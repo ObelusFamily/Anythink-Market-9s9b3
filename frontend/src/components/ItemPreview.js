@@ -36,13 +36,13 @@ const ItemPreview = (props) => {
     >
       <img
         alt="item"
-        src={item.image}
+        src={item.image || '/placeholder.png'}
         className="card-img-top item-img"
         style={{ borderRadius: "20px" }}
       />
       <div className="card-body">
         <Link to={`/item/${item.slug}`} className="text-white">
-          <h3 className="card-title">{item.title}</h3>
+          <h3 className="card-title">{item.title }</h3>
           <p className="card-text crop-text-3">{item.description}</p>
         </Link>
         <div className="d-flex flex-row align-items-center pt-2">
