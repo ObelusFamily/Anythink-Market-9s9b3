@@ -185,7 +185,10 @@ router.put("/:item", auth.required, function (req, res, next) {
       }
 
       if (typeof req.body.item.image !== "undefined") {
-        req.item.image = req.body.item.image;
+        req.item.image =
+          req.body.item.image.match(/\.(jpeg|jpg|gif|png)$/) != null
+            ? req.body.item.image
+            : null;
       }
 
       if (typeof req.body.item.tagList !== "undefined") {
