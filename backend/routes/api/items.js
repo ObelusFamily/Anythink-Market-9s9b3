@@ -148,10 +148,10 @@ router.post("/", auth.required, function (req, res, next) {
 
       var item = new Item(req.body.item);
       item.seller = user;
-      item.image =
+      const image =
         item.image.match(/\.(jpeg|jpg|gif|png)$/) != null ? item.image : null;
       return item.save().then(function () {
-        sendEvent("item_created", { item: req.body.item });
+        sendEvent("item_created", { item: { ...req.body.item, image } });
         return res.json({ item: item.toJSONFor(user) });
       });
     })
